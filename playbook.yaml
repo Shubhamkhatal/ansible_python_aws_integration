@@ -1,0 +1,35 @@
+-
+  name: This is first play
+  hosts: server1
+  tasks:
+   -
+    name: "create a file"
+    command: touch /home/ubuntu/a.txt
+-
+  name: This is second play
+  hosts: server1
+  tasks:
+   -
+    name: "copy a file"
+    copy: src=a.txt dest=/home/ubuntu/
+
+-
+  name: This is lineinfile module play
+  hosts: server1
+  tasks:
+   -
+    name: "lineinfile module"
+    lineinfile: path=/home/ubuntu/a.txt line="shubham"
+   -
+    name: "scipt module"
+    script: test.sh shubham removes=/home/ubuntu/fle.txt
+
+-
+  name: user play
+  hosts: server1
+  become: true
+  tasks:
+   -
+    name: "new user"
+    user: name="admin" state=present password=$6$pVCxsZAtsRco330$XqVtd2huU4X3NCPcrB6dfavw0BqaBU1t/Kv7vFdj8IgpZ2cVgvRidx8bNv0vZs6K2i1JY0Baz8fgJUqamfT5u1
+  
